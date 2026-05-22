@@ -22,13 +22,29 @@ class App {
             taskInput.value = '';
         });
 
+        // Initialize Pet Engine
+        const settings = StorageService.getSettings();
+        this.petEngine = new PetEngine('pet-canvas');
+        this.petEngine.setPet(settings.petType || 'cat');
+
+        const petSelector = document.getElementById('pet-selector');
+        petSelector.value = settings.petType || 'cat';
+        petSelector.addEventListener('change', (e) => {
+            const newPet = e.target.value;
+            this.petEngine.setPet(newPet);
+            const currentSettings = StorageService.getSettings();
+            currentSettings.petType = newPet;
+            StorageService.saveSettings(currentSettings);
+        });
+
         // Initialize Timer
         const timerElements = {
             timeDisplay: document.getElementById('time-display'),
             statusDisplay: document.getElementById('status-display'),
             circle: document.querySelector('.progress-ring__circle'),
             btnToggle: document.getElementById('btn-toggle'),
-            timerContainer: document.getElementById('timer-container')
+            timerContainer: document.getElementById('timer-container'),
+            petEngine: this.petEngine
         };
         
         this.timer = new Timer(timerElements);

@@ -15,7 +15,8 @@ class StorageService {
         const defaultSettings = {
             pomodoro: 25 * 60,
             shortBreak: 5 * 60,
-            longBreak: 15 * 60
+            longBreak: 15 * 60,
+            petType: 'cat'
         };
         const settings = localStorage.getItem(this.SETTINGS_KEY);
         return settings ? { ...defaultSettings, ...JSON.parse(settings) } : defaultSettings;

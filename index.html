@@ -16,14 +16,16 @@
         <!-- Timer Section -->
         <main class="glass-panel timer-section" id="timer-container">
             <div class="pet-wrapper" id="pet">
-                <div class="pet">
-                    <div class="pet-mouth"></div>
-                    <div class="pet-zzz">Zzz</div>
-                </div>
+                <canvas id="pet-canvas" width="64" height="64"></canvas>
             </div>
             
             <header class="timer-header">
                 <div class="brand">FocusFlow</div>
+                <select id="pet-selector" class="pet-selector">
+                    <option value="cat">Cat</option>
+                    <option value="dog">Dog</option>
+                    <option value="bot">Bot</option>
+                </select>
                 <div class="mode-selector">
                     <button class="mode-btn active" data-mode="pomodoro">Pomodoro</button>
                     <button class="mode-btn" data-mode="shortBreak">Short Break</button>
@@ -78,6 +80,7 @@
     <!-- Scripts -->
     <script src="js/storage.js"></script>
     <script src="js/tasks.js"></script>
+    <script src="js/pets.js"></script>
     <script src="js/timer.js"></script>
     <script src="js/app.js"></script>
     <script>

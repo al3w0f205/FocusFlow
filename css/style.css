@@ -365,126 +365,53 @@ body {
     }
 }
 
-/* Pet Component */
+/* Pet Canvas Component */
 .pet-wrapper {
     position: absolute;
-    top: -60px;
+    top: -64px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    width: 64px;
+    height: 64px;
     pointer-events: none;
     z-index: 10;
 }
 
-.pet {
-    width: 60px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid var(--accent-color);
-    border-radius: 40% 40% 50% 50%;
-    position: relative;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3), inset 0 0 10px rgba(255,255,255,0.1);
-    backdrop-filter: blur(5px);
-    transition: all 0.5s ease;
-    animation: breathe 3s infinite ease-in-out;
-}
-
-.pet::before, .pet::after {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: var(--text-primary);
-    border-radius: 50%;
-    top: 20px;
+#pet-canvas {
+    width: 64px;
+    height: 64px;
+    image-rendering: pixelated; /* Ensures authentic pixel art scaling */
     transition: all 0.3s ease;
 }
 
-.pet::before { left: 15px; }
-.pet::after { right: 15px; }
-
-/* Mouth */
-.pet-mouth {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 10px;
-    height: 4px;
-    background: var(--text-primary);
-    border-radius: 4px;
-    transition: all 0.3s ease;
+/* Add a subtle glow depending on the state */
+.state-focus #pet-canvas {
+    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
+}
+.state-break #pet-canvas {
+    opacity: 0.8;
 }
 
-/* Zzz */
-.pet-zzz {
-    position: absolute;
-    top: -20px;
-    right: -10px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--text-secondary);
-    opacity: 0;
+/* Pet Selector */
+.pet-selector {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    cursor: pointer;
+    transition: var(--transition);
+    appearance: none;
+    text-align: center;
 }
-
-/* States */
-.state-focus .pet {
-    border-color: var(--success-color);
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-    animation: bounce 1s infinite ease-in-out;
+.pet-selector:hover {
+    background: rgba(0,0,0,0.4);
+    border-color: var(--accent-color);
 }
-.state-focus .pet::before, .state-focus .pet::after {
-    height: 12px;
-    top: 18px;
-}
-.state-focus .pet-mouth {
-    width: 14px;
-    height: 6px;
-    border-radius: 0 0 10px 10px;
-}
-
-.state-break .pet {
-    border-color: var(--text-secondary);
-    box-shadow: none;
-    background: rgba(255, 255, 255, 0.05);
-    height: 40px;
-    margin-top: 10px;
-    animation: breathe 4s infinite ease-in-out;
-}
-.state-break .pet::before, .state-break .pet::after {
-    height: 2px;
-    top: 25px;
-    width: 10px;
-    background: var(--text-secondary);
-}
-.state-break .pet-mouth {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    bottom: 8px;
-}
-.state-break .pet-zzz {
-    animation: floatZzz 3s infinite linear;
-}
-
-/* Animations */
-@keyframes breathe {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05) translateY(-2px); }
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-
-@keyframes floatZzz {
-    0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
-    20% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { opacity: 0; transform: translate(15px, -20px) scale(1.5); }
+.pet-selector option {
+    background: var(--bg-color);
+    color: var(--text-primary);
 }

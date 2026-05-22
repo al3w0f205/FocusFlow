@@ -5,6 +5,7 @@ class Timer {
         this.circle = elements.circle;
         this.btnToggle = elements.btnToggle;
         this.timerContainer = elements.timerContainer;
+        this.petEngine = elements.petEngine;
         
         this.settings = StorageService.getSettings();
         this.currentMode = 'pomodoro'; // pomodoro | shortBreak | longBreak
@@ -25,17 +26,25 @@ class Timer {
     updatePetState() {
         if (!this.timerContainer) return;
         
-        // Remove previous states
+        // Remove previous CSS states (kept for fallback styling like container glow)
         this.timerContainer.classList.remove('state-focus', 'state-break', 'state-idle');
         
+        let stateName = 'idle';
         if (!this.isRunning) {
             this.timerContainer.classList.add('state-idle');
+            stateName = 'idle';
         } else {
             if (this.currentMode === 'pomodoro') {
                 this.timerContainer.classList.add('state-focus');
+                stateName = 'focus';
             } else {
                 this.timerContainer.classList.add('state-break');
+                stateName = 'break';
             }
+        }
+
+        if (this.petEngine) {
+            this.petEngine.setState(stateName);
         }
     }
 

@@ -25,3 +25,7 @@ class StorageService {
         localStorage.setItem(this.SETTINGS_KEY, JSON.stringify(settings));
     }
 }
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = StorageService;
+}

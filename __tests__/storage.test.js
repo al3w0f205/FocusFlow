@@ -1,9 +1,4 @@
-const fs = require('fs');
-const path = require('path');
-
-// Cargamos el script de StorageService directamente
-const code = fs.readFileSync(path.resolve(__dirname, '../js/storage.js'), 'utf8');
-eval(code);
+const StorageService = require('../js/storage.js');
 
 describe('StorageService', () => {
     beforeEach(() => {

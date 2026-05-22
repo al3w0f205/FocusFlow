@@ -4,6 +4,7 @@ class Timer {
         this.statusDisplay = elements.statusDisplay;
         this.circle = elements.circle;
         this.btnToggle = elements.btnToggle;
+        this.timerContainer = elements.timerContainer;
         
         this.settings = StorageService.getSettings();
         this.currentMode = 'pomodoro'; // pomodoro | shortBreak | longBreak
@@ -18,6 +19,24 @@ class Timer {
         this.circle.style.strokeDashoffset = 0;
 
         this.updateDisplay();
+        this.updatePetState();
+    }
+
+    updatePetState() {
+        if (!this.timerContainer) return;
+        
+        // Remove previous states
+        this.timerContainer.classList.remove('state-focus', 'state-break', 'state-idle');
+        
+        if (!this.isRunning) {
+            this.timerContainer.classList.add('state-idle');
+        } else {
+            if (this.currentMode === 'pomodoro') {
+                this.timerContainer.classList.add('state-focus');
+            } else {
+                this.timerContainer.classList.add('state-break');
+            }
+        }
     }
 
     setMode(mode) {
@@ -37,6 +56,7 @@ class Timer {
         };
         this.statusDisplay.textContent = statusMap[mode];
         this.updateDisplay();
+        this.updatePetState();
         return true;
     }
 
@@ -52,6 +72,7 @@ class Timer {
         if (this.timeLeft <= 0) return;
         this.isRunning = true;
         this.btnToggle.textContent = 'Pause';
+        this.updatePetState();
         
         this.interval = setInterval(() => {
             this.timeLeft--;
@@ -67,6 +88,7 @@ class Timer {
         this.isRunning = false;
         this.btnToggle.textContent = 'Start';
         clearInterval(this.interval);
+        this.updatePetState();
     }
 
     reset() {

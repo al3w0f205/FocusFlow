@@ -27,7 +27,8 @@ class App {
             timeDisplay: document.getElementById('time-display'),
             statusDisplay: document.getElementById('status-display'),
             circle: document.querySelector('.progress-ring__circle'),
-            btnToggle: document.getElementById('btn-toggle')
+            btnToggle: document.getElementById('btn-toggle'),
+            timerContainer: document.getElementById('timer-container')
         };
         
         this.timer = new Timer(timerElements);

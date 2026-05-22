@@ -1,0 +1,25 @@
+{
+  "name": "focusflow",
+  "version": "1.0.0",
+  "description": "FocusFlow es una herramienta de productividad offline diseñada para ayudarte a mantener la concentración. Combina un temporizador Pomodoro con un gestor de tareas integrado, utilizando tecnología Vanilla JavaScript y almacenamiento en el navegador, sin necesidad de conectarse a ningún servidor ni base de datos externa.",
+  "main": "jest.config.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/al3w0f205/FocusFlow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/al3w0f205/FocusFlow/issues"
+  },
+  "homepage": "https://github.com/al3w0f205/FocusFlow#readme",
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1"
+  }
+}
